@@ -17,7 +17,7 @@ body {
   height: 100vh;
 }
 
-/* MÀN HÌNH KHÓA */
+/* LOCK SCREEN */
 #lockScreen {
   position: fixed;
   width: 100%;
@@ -31,10 +31,10 @@ body {
   z-index: 10;
 }
 
-/* THIỆP TO HƠN + RESPONSIVE */
+/* CARD */
 .card {
-  width: min(90vw, 500px);   /* tối đa 500px */
-  height: min(80vh, 650px);  /* cao hơn */
+  width: min(90vw, 500px);
+  height: min(80vh, 650px);
   perspective: 1200px;
 }
 
@@ -77,7 +77,7 @@ body {
 
 img {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   border-radius: 15px;
   margin-bottom: 15px;
@@ -91,7 +91,7 @@ p {
   font-size: 18px;
 }
 
-/* NÚT */
+/* BUTTON */
 button {
   margin: 5px;
   padding: 12px 18px;
@@ -103,7 +103,7 @@ button {
   font-size: 16px;
 }
 
-/* TIM BAY */
+/* HEART */
 .heart {
   position: absolute;
   color: red;
@@ -119,12 +119,14 @@ button {
 
 <body>
 
+<!-- LOCK -->
 <div id="lockScreen">
   <h2>🔒 Nhập mật khẩu để mở thiệp</h2>
-  <input type="password" id="password">
+  <input type="password" id="password" placeholder="Nhập mật khẩu...">
   <button onclick="checkPass()">Mở 💖</button>
 </div>
 
+<!-- CARD -->
 <div class="card" onclick="openCard()">
   <div class="card-inner">
     
@@ -133,15 +135,19 @@ button {
     </div>
 
     <div class="card-back">
-      <img src="https://picsum.photos/500/300">
+      <img src="lxt1.jpg">
 
-      <h2 contenteditable="true">Chúc mừng sinh nhật em 💖</h2>
+      <h2 contenteditable="true">Gửi Tâm Bằng, vợ của anhhh 💖</h2>
 
       <p contenteditable="true">
-        Chúc em luôn vui vẻ, hạnh phúc và mãi ở bên anh ❤️
+        Chúc vợ có ngày sinh nhật thật hạnh phúccccc ạ! Anh xin gửi vợ tình yêu thật to lớn của anh
+        dành cho vợ, chúc vợ luôn đón nhận mọi điều tốt đẹp nhất trong suốt cuộc đời này ạ, cảm ơn vợ vì đã
+        luôn yêu anh, luôn bên anh và anh rất hạnh phúc ạa! Anh đang và sẽ luôn ở bên vợ, đồng hành cùng
+        vợ, chia sẻ buồn vui cùng vợ, động viên vợ, yêu thương vợ và cố gắng vì cả hai! Cuối cùng vẫn là
+        chúc vợ của anh đón tuổi 19 tràn ngập trong tiếng cười và hạnh phúc, anh yêu vợ nhiều lắmmm ❤️❤️❤️❤️
       </p>
 
-      <p contenteditable="true">- Người yêu của em -</p>
+      <p contenteditable="true">- From: Lê Xuân Trường yêu dấu -</p>
 
       <div>
         <button onclick="playMusic(event)">▶️ Phát</button>
@@ -152,20 +158,33 @@ button {
   </div>
 </div>
 
-<audio id="music" src="music.mp3"></audio>
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function checkPass() {
   const pass = document.getElementById("password").value;
-  if(pass === "1234") {
+  if(pass === "25042007") {
     document.getElementById("lockScreen").style.display = "none";
   } else {
-    alert("Sai mật khẩu rồi 😢");
+    alert("Sai mật khẩu rồi vợ ơiiii😢");
   }
 }
 
+let hasPlayed = false;
+
 function openCard() {
-  document.querySelector(".card").classList.toggle("open");
+  const card = document.querySelector(".card");
+  card.classList.toggle("open");
+
+  const music = document.getElementById("music");
+
+  if (!hasPlayed) {
+    music.play();
+    hasPlayed = true;
+  }
 }
 
 function playMusic(e) {
@@ -178,7 +197,7 @@ function pauseMusic(e) {
   document.getElementById("music").pause();
 }
 
-/* TIM BAY */
+/* HEART EFFECT */
 setInterval(() => {
   const heart = document.createElement("div");
   heart.className = "heart";
